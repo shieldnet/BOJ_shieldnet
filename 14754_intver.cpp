@@ -3,18 +3,16 @@
 
 using namespace std;
 
-typedef long long LL;
-
-LL map[1001][1001] = { 0, };
+int map[1001][1001] = { 0, };
 bool check[1001][1001] = { false, };
 
 int main() {
-	LL n, m;
-	LL answer = 0;
-	scanf("%lld %lld", &n, &m);
+	int n, m;
+	int answer = 0;
+	scanf("%d %d", &n, &m);
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {
-			scanf("%lld", &map[i][j]);
+			scanf("%d", &map[i][j]);
 		}
 	}
 
@@ -54,6 +52,6 @@ int main() {
 		}
 	}
 
-	printf("%lld", answer);
+	printf("%d", answer);
 	return 0;
 }
