@@ -37,13 +37,13 @@ ll fact(int n) {
 	return n*fact(n - 1);
 }
 int N;
-ll dp[12][102][102][102];
+ll cache[12][102][102][102];
 ll factorial[101] = { 0, };
 
 ll solve(int level, int R, int G, int B) {
 	if (R<0 || G<0 || B<0) return 0;
 	if (level == N + 1) return 1;
-	ll& cache = dp[level][R][G][B];
+	ll& cache = cache[level][R][G][B];
 	if (cache != -1) return cache;
 	ll ret = 0;
 
@@ -70,7 +70,7 @@ int main() {
 		factorial[i] = factorial[i - 1] * i;
 	}
 
-	memset(dp, -1, sizeof(dp));
+	memset(cache, -1, sizeof(cache));
 	int R, G, B;
 	inp4(N, R, G, B);
 	printf("%lld", solve(1, R, G, B));

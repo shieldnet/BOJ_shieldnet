@@ -49,7 +49,7 @@ int solve(int input) {
 	if (input %2 !=0 && input%3 != 0) {
 		int temp = solve(input - 1) + 1;
 		if (ret > temp) {
-			ret = temp;8
+			ret = temp;
 		}
 	}
 
