@@ -24,7 +24,7 @@
 
 using namespace std;
 
-typedef long long ll;
+typedef long long LL;
 
 
 const int MOD = 1000000007;
@@ -32,33 +32,33 @@ const int INF = 0x3c3c3c3c;
 const long long INFL = 0x3c3c3c3c3c3c3c3c;
 const int MAX_N = 102;
 
-ll fact(int n) {
+LL fact(int n) {
 	if (n == 0 || n == 1) return 1;
 	return n*fact(n - 1);
 }
 int N;
-ll cache[12][102][102][102];
-ll factorial[101] = { 0, };
+LL cache[12][102][102][102];
+LL factorial[101] = { 0, };
 
-ll solve(int level, int R, int G, int B) {
+LL solve(int level, int R, int G, int B) {
 	if (R<0 || G<0 || B<0) return 0;
 	if (level == N + 1) return 1;
-	ll& cache = cache[level][R][G][B];
+	LL& cache = cache[level][R][G][B];
 	if (cache != -1) return cache;
-	ll ret = 0;
+	LL ret = 0;
 
 	ret += solve(level + 1, R - level, G, B);
 	ret += solve(level + 1, R, G - level, B);
 	ret += solve(level + 1, R, G, B - level);
 
 	if (level % 2 == 0) {
-		ret += solve(level + 1, factorial[R - level / 2], factorial[G - level / 2], B)*(fact(level) / (ll)pow(level / 2, 2));
-		ret += solve(level + 1, R - level / 2, G, B - level / 2)*(fact(level) / (ll)pow(level / 2, 2));
-		ret += solve(level + 1, R, G - level / 2, B - level / 2)*(fact(level) / (ll)pow(level / 2, 2));
+		ret += solve(level + 1, factorial[R - level / 2], factorial[G - level / 2], B)*(fact(level) / (LL)pow(level / 2, 2));
+		ret += solve(level + 1, R - level / 2, G, B - level / 2)*(fact(level) / (LL)pow(level / 2, 2));
+		ret += solve(level + 1, R, G - level / 2, B - level / 2)*(fact(level) / (LL)pow(level / 2, 2));
 	}
 
 	if (level % 3 == 0) 
-		ret += solve(level + 1, R - level / 3, G - level / 3, B - level / 3)*(fact(level) / (ll)pow(level / 3, 3));
+		ret += solve(level + 1, R - level / 3, G - level / 3, B - level / 3)*(fact(level) / (LL)pow(level / 3, 3));
 
 
 	return cache = ret;
